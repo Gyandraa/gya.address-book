@@ -1,0 +1,128 @@
+body {
+    background-image: url("addressbg.jpg"), linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+    background-blend-mode: overlay;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Maven Pro", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    margin: auto;
+}
+
+#form,
+input,
+select {
+    border-radius: 5px;
+}
+
+input {
+    padding: 5px;
+    width: 260px;
+    margin: 10px;
+    background-color: #fff;
+    outline: none;
+}
+
+select,
+#add {
+    width: 275px;
+    height: 25px;
+    margin-top: 5px;
+    background-color: #fff;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.title {
+    color: white;
+    text-align: center;
+    padding-top: 5px;
+}
+
+li {
+    list-style-type: none;
+    margin-left: 5px;
+    padding: 3px;
+}
+
+#contacts {
+    margin: 10px auto;
+    width: auto;
+}
+
+.newContact {
+    background: rgba(179, 178, 176, 0.6);
+    color: white;
+    width: 300px;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+
+.newCon {
+    height: 125px;
+    width: 250px;
+    background-color: rgb(207, 211, 214);
+    margin: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.deletebtn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid black;
+    outline: none;
+    position: relative;
+    left: 230px;
+    top: 5px;
+}
+
+.material-icons {
+    position: relative;
+    right: 5px;
+}
+
+#add {
+    border-radius: 5px;
+    margin: 10px;
+    outline: none;
+}
+
+@media only screen and (min-width: 768px) {
+    .newContact {
+        width: 500px;
+        margin: 40px auto;
+    }
+
+    input {
+        width: 450px;
+    }
+
+    select {
+        width: 465px;
+    }
+
+    #add {
+        width: 465px;
+        margin: 10px;
+        padding: 5px;
+    }
+
+    #contacts {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #contacts {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
