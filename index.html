@@ -13,12 +13,18 @@
 
 <body>
 
+    <form id="search-contacts" method="get">
+        <input id="search-input" type="text" name="q" placeholder="Enter keyword..." />
+        <button type="submit">Search</button>
+    </form>
+
     <div class="newContact">
         <div class="title">
             <p>My Contacts</p>
         </div>
-        <div id="form">
-            <form>
+        <div>
+            <form id="contact-form">
+                <input type="text" placeholder="Id" id="id">
                 <input type="text" placeholder="Name" id="name">
                 <input type="email" placeholder="Email" id="email">
                 <input type="phone" placeholder="Phone" id="phone">
@@ -29,7 +35,7 @@
     <div id="contacts"></div>
 
 
-    <script src="fungsi.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
