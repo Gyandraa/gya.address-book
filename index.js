@@ -89,23 +89,6 @@ document.getElementById("add").addEventListener("click", (event) => {
     clearFields();
 });
 
-function saveContact(contacts) {
-    localStorage.setItem("address-book", JSON.stringify(contacts));
-}
-
-function loadContact() {
-    const contacts = localStorage.getItem("address-book");
-    if (!contacts) {
-        saveContact([]);
-    }
-
-    try {
-        return JSON.parse(contacts);
-    } catch (error) {
-        console.error("Failed to laod contacts", error);
-    }
-}
-
 // clear input fields
 function clearFields() {
     document.getElementById("id").value = "";
