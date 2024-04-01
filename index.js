@@ -2,7 +2,7 @@ class AddressBook {
     constructor() {
         this.contacts = [
             new Contact(1, "Gya", "gyan@gmail.com", "+62829238"),
-            new Contact(2, "Gyagnteng", "gyagn@gmail.com", "+62849382")
+            new Contact(2, "Gyagnteng", "gyagn@gmail.com", "+62849382"),
         ];
     }
 
@@ -10,10 +10,16 @@ class AddressBook {
         const newContact = new Contact(info.id, info.name, info.email, info.phone);
         this.contacts.push(newContact);
     }
-    editAt(index) {
-        this.contacts.splice(index, 1);
 
+    editAt(index, info) {
+        this.contacts[index] = new Contact(
+            info.id,
+            info.name,
+            info.email,
+            info.phone
+        );
     }
+
     deleteAt(index) {
         this.contacts.splice(index, 1);
     }
@@ -25,26 +31,39 @@ class AddressBook {
             const newContactEntry = document.createElement("div");
             newContactEntry.classList.add("newCon");
             newContactEntry.innerHTML = `
-            <li>Id: ${person.id}</li>
-            <li>Name: ${person.name}</li>
-            <li>Email: ${person.email}</li>
-            <li>Phone: ${person.phone}</li>
-            <button class="delete-button" id="${id}"><i class="material-icons">delete</i></button>
-            <button class="edite-button" id="${id}"><i class="material-icons">edit</i></button>
-            `
+                <li>Id: ${person.id}</li>
+                <li>Name: ${person.name}</li>
+                <li>Email: ${person.email}</li>
+                <li>Phone: ${person.phone}</li>
+                <button class="delete-button" id="delete-${id}"><i class="material-icons">delete</i></button>
+                <button class="edit-button" id="edit-${id}"><i class="material-icons">edit</i></button>
+            `;
             document.getElementById("contacts").appendChild(newContactEntry);
             id++;
         }
         for (let button of document.getElementsByClassName("delete-button")) {
-            button.addEventListener("click", deleteContact);
+            button.addEventListener("click", () => {
+                let index = button.id.split("-")[1];
+                this.deleteAt(index);
+                this.renderContact();
+            });
         }
         for (let button of document.getElementsByClassName("edit-button")) {
-            button.addEventListener("click", editContact);
+            button.addEventListener("click", () => {
+                let index = button.id.split("-")[1];
+                let info = {
+                    id: document.getElementById("id").value,
+                    name: document.getElementById("name").value,
+                    email: document.getElementById("email").value,
+                    phone: document.getElementById("phone").value,
+                };
+                this.editAt(index, info);
+                this.renderContact();
+                clearFields();
+            });
         }
-
     }
 }
-
 
 // object blueprint to be repeated for each contact
 class Contact {
@@ -57,7 +76,7 @@ class Contact {
 }
 
 // adding a contact
-document.getElementById("add").addEventListener("click", event => {
+document.getElementById("add").addEventListener("click", (event) => {
     event.preventDefault();
     let info = {
         id: document.getElementById("id").value,
@@ -69,22 +88,30 @@ document.getElementById("add").addEventListener("click", event => {
     newAddressBook.renderContact();
     clearFields();
 });
-// deleting a contact
-function deleteContact(event) {
-    let index = event.target.parentElement.id;
-    newAddressBook.deleteAt(index);
-    newAddressBook.renderContact();
+
+function saveContact(contacts) {
+    localStorage.setItem("address-book", JSON.stringify(contacts));
 }
 
+function loadContact() {
+    const contacts = localStorage.getItem("address-book");
+    if (!contacts) {
+        saveContact([]);
+    }
+
+    try {
+        return JSON.parse(contacts);
+    } catch (error) {
+        console.error("Failed to laod contacts", error);
+    }
+}
 
 // clear input fields
 function clearFields() {
-    let info = {
-        id: document.getElementById("id").value = "",
-        name: document.getElementById("name").value = "",
-        email: document.getElementById("email").value = "",
-        phone: document.getElementById("phone").value = "",
-    };
+    document.getElementById("id").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("phone").value = "";
 }
 
 // creating the new addressbook
