@@ -1,8 +1,8 @@
 class AddressBook {
   constructor() {
     this.contacts = [
-      new Contact(1, "Gya", "gyan@gmail.com", "+62829238"),
-      new Contact(2, "Gyagnteng", "gyagn@gmail.com", "+62849382"),
+      new Contact(1, "Gyan", "gyan@gmail.com", "+62829238"),
+      new Contact(2, "naufal", "naufal@gmail.com", "+62849382"),
     ];
   }
 
@@ -26,8 +26,15 @@ class AddressBook {
 
   renderContact() {
     document.getElementById("contacts").innerHTML = "";
+    const searchQuery = document.getElementById("search").value.toLowerCase();
+    const filteredContacts = this.contacts.filter(
+      (contact) =>
+      contact.name.toLowerCase().includes(searchQuery) ||
+      contact.email.toLowerCase().includes(searchQuery) ||
+      contact.phone.includes(searchQuery)
+    );
     let id = 0;
-    for (let person of this.contacts) {
+    for (let person of filteredContacts) {
       const newContactEntry = document.createElement("div");
       newContactEntry.classList.add("newCon");
       newContactEntry.innerHTML = `
@@ -89,25 +96,6 @@ document.getElementById("add").addEventListener("click", (event) => {
   clearFields();
 });
 
-function searchContacts() {
-  let searchEntry = inputElement.value;
-
-  // Reset the field and add focus to it
-  inputElement.value = "";
-  inputElement.focus();
-
-  for (i = 0; i < contacts.length; i++) {
-    if (contacts[i][0].includes(searchEntry)) {
-      searchResult.className = "search-result-good";
-      searchResult.textContent = contacts[i][0] + contacts[i][1];
-      break;
-    } else {
-      searchResult.className = "search-result-bad";
-      searchResult.textContent = `We did not find anyone with the name: '${searchEntry}'.`;
-    }
-  }
-  searchResult;
-}
 // clear input fields
 function clearFields() {
   document.getElementById("id").value = "";
