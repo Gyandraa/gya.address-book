@@ -22,7 +22,7 @@ class Contacts {
     this.contacts.splice(index, 1);
     this.saveContacts(this.contacts);
   }
-
+//add local storage
   saveContacts(contacts) {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }
