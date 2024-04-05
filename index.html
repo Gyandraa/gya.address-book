@@ -17,17 +17,16 @@
   </head>
 
   <body>
-    
     <div class="newContact">
       <div class="title">
-        <p>My Contacts</p>
       </div>
       <div>
         <form id="contact-form">
-          <label>search</label>
+          <div class="search">
+          <p>Search Contacts</p>
           <input type="text" id="search" placeholder="Search contacts..." />
-          <label>Id</label>
-          <input type="text" placeholder="Id" id="id" />
+          </div>
+          <p>Add a new Contact</p>
           <label>Name</label>
           <input type="text" placeholder="Name" id="name" />
           <label>Email</label>
@@ -35,11 +34,11 @@
           <label>Phone</label>
           <input type="phone" placeholder="Phone" id="phone" />
           <button id="add">Add</button>
+          <div id="errorMessages"></div>
         </form>
       </div>
     </div>
     <div id="contacts"></div>
-
     <script src="index.js"></script>
   </body>
 </html>
