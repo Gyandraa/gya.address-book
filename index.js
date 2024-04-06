@@ -1,10 +1,12 @@
 class Contacts {
   constructor() {
     const savedContacts = this.loadContacts();
-    this.contacts = savedContacts ? savedContacts : [
-      new Contact("Gyan", "gyan@gmail.com", "+62829238"),
-      new Contact("naufal", "naufal@gmail.com", "+62849382"),
-    ];
+    this.contacts = savedContacts
+      ? savedContacts
+      : [
+          new Contact("Gyan", "gyan@gmail.com", "+62829238"),
+          new Contact("naufal", "naufal@gmail.com", "+62849382"),
+        ];
   }
 
   add(info) {
@@ -22,7 +24,7 @@ class Contacts {
     this.contacts.splice(index, 1);
     this.saveContacts(this.contacts);
   }
-//add local storage
+  //add local storage
   saveContacts(contacts) {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }
